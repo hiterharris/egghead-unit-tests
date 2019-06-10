@@ -6,15 +6,16 @@ import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('App />', () => {
+  const wrapper = shallow(<App />);
+  it('should contain 1 p element', () => {
+    expect(wrapper.find('p').length).toBe(1);
+  });
 });
 
 describe('App />', () => {
-  it('should render App', () => {
-    const wrapper = shallow(<App />);
-    console.log(wrapper.debug());
+  const wrapper = shallow(<App />);
+  it('className .App should exist', () => {
+    expect(wrapper.find('.App').exists()).toBe(true);
   });
 });
